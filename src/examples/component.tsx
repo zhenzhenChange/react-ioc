@@ -3,6 +3,7 @@ import { Notification } from './notification.service'
 import { useState } from 'react'
 
 import './notification.service.spec'
+import { Counter } from './counter.service'
 
 function DIKidA() {
   const service = useInject(Notification)
@@ -22,6 +23,12 @@ function DIKidB() {
       DIKidB + {service.state} + dep {service.count}
     </span>
   )
+}
+
+function DIKidC() {
+  const service = useInject(Counter)
+
+  return <span>DIKidC + {service.count}</span>
 }
 
 function DIKidSub() {
@@ -61,6 +68,8 @@ export function Component() {
       <DIKidB />
       <br />
       <DIKidSub />
+      <br />
+      <DIKidC />
     </div>
   )
 }
