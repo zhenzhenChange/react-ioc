@@ -13,17 +13,17 @@
     "build": "vite build"
   },
   "dependencies": {
-    "antd": "^5.19.0",
+    "antd": "^5.20.6",
     "injection-js": "^2.4.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "typescript": "^5.5.3",
-    "vite": "^5.3.2"
+    "typescript": "^5.6.2",
+    "vite": "^5.4.6"
   }
 }

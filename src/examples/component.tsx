@@ -1,9 +1,10 @@
 import { useInject } from '../core'
 import { Notification } from './notification.service'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import './notification.service.spec'
 import { Counter } from './counter.service'
+import { TimerService } from './service'
 
 function DIKidA() {
   const service = useInject(Notification)
@@ -42,7 +43,7 @@ function DIKidSub() {
   )
 }
 
-export function Component() {
+export function ComponentA() {
   const service = useInject(Notification)
   const [, update] = useState(Symbol())
 
@@ -73,3 +74,32 @@ export function Component() {
     </div>
   )
 }
+
+export function Component() {
+  const TS = useInject(TimerService)
+  const [count, setCount] = useState(60)
+
+  useEffect(() => {
+    TS.onChange(setCount)
+  }, [])
+
+  return (
+    <h1>
+      <button onClick={() => TS.start(count)}>start</button>
+      <button onClick={() => TS.close()}>close</button>
+      <button onClick={() => TS.pause()}>pause</button>
+      <button onClick={() => TS.resume()}>resume</button>
+      <input value={count} onChange={(e) => setCount(Number(e.target.value))} />
+    </h1>
+  )
+}
+
+// 脱离组件模拟测试
+const instance = new TimerService()
+
+instance.start(60)
+instance.onChange(console.log)
+
+setTimeout(() => instance.pause(), 5000)
+setTimeout(() => instance.resume(), 8000)
+setTimeout(() => instance.close(), 10000)
